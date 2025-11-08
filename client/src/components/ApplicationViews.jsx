@@ -24,21 +24,30 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             </AuthorizedRoute>
           }
         />
+        <Route path="workorders">
+            <Route
+                index
+                element={
+                    <AuthorizedRoute loggedInUser={loggedInUser}>
+                        <WorkOrderList />
+                    </AuthorizedRoute>
+                }
+            />
+            <Route
+                path="create"
+                element={
+                    <AuthorizedRoute loggedInUser={loggedInUser}>
+                        <CreateWorkOrder />
+                    </AuthorizedRoute>
+                }
+            />
         <Route
-          path="workorders"
-          element={
-            <AuthorizedRoute loggedInUser={loggedInUser}>
-              <p>Work Orders</p>
-            </AuthorizedRoute>
-          }
-        />
-        <Route
-          path="employees"
-          element={
-            <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
-              <p>Employees</p>
-            </AuthorizedRoute>
-          }
+            path="employees"
+            element={
+                <AuthorizedRoute roles={["Admin"]} loggedInUser={loggedInUser}>
+                    <UserProfileList />
+                </AuthorizedRoute>
+            }
         />
         <Route
           path="login"
