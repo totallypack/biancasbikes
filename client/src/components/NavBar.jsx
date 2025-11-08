@@ -19,9 +19,13 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
   const toggleNavbar = () => setOpen(!open);
 
-  const getInventory = () => {
-    //implement functionality here....
-  };
+    const getInventory = () => {
+        getBikesInShopCount().then(setInventory);
+    };
+
+    useEffect(() => {
+        loggedInUser && getInventory();
+    }, [loggedInUser]);
 
   useEffect(() => {
     loggedInUser && getInventory();
